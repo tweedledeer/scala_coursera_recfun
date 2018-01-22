@@ -78,12 +78,15 @@ object Main extends App {
   /**
     * Exercise 3
     */
-  def countChange(money: Int, coins: List[Int], index: Int): Int = {
-    if (money < 0) return 0
-    if (money == 0) return 1
-    if (index == coins.size && money > 0) return 0
-    countChange(money - coins(index), coins, index) + countChange(money, coins, index + 1)
-
+  def countChange(money: Int, coins: List[Int]): Int = {
+    def countChangeImpl(money: Int, coins: List[Int]): Int = {
+      if (money < 0 || coins.isEmpty)
+        0
+      else if (money == 0)
+        1
+      else
+        countChangeImpl(money, coins.tail) + countChangeImpl(money - coins.head, coins)
+    }
+    countChangeImpl(money, coins)
   }
-
 }
