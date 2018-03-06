@@ -42,13 +42,13 @@ object Main extends App {
     if (listOfParentheses.size % 2 != 0)
       throw new Exception("Parenthesis are unbalanced: there are not equal number of lefts and rights")
     else {
-      return balanceImpl(chars, new Stack[Char])
+      balanceImpl(chars, new Stack[Char])
     }
   }
 
   def balanceImpl(chars: List[Char], stack: Stack[Char]): Boolean = {
     if (chars.isEmpty)
-      return stack.isEmpty
+      stack.isEmpty
     else {
       chars.head match {
         case '(' => {
@@ -61,7 +61,7 @@ object Main extends App {
             balanceImpl(chars.tail, stack)
           }
           else
-            return false
+            false
         }
         case _ => balanceImpl(chars.tail, stack)
       }
